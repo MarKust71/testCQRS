@@ -4,5 +4,5 @@ import { CreateArticleCommand } from '../implementations/create-article.command'
 @CommandHandler(CreateArticleCommand)
 export class CreateArticleHandler
   implements ICommandHandler<CreateArticleCommand> {
-  execute() {}
+  async execute() {}
 }
