@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Article } from './article.entity';
-import { CqrsModule, CommandBus } from '@nestjs/cqrs';
+import { CqrsModule, CommandBus, EventBus } from '@nestjs/cqrs';
 import { CreateArticleHandler } from './commands/handlers/create-article.handler';
 import { ModuleRef } from '@nestjs/core';
 
@@ -29,6 +29,7 @@ export class AppModule implements OnModuleInit {
   constructor(
     private readonly commandBus$: CommandBus,
     private readonly moduleRef: ModuleRef,
+    private readonly eventBus$: EventBus,
   ) {}
   onModuleInit() {
     console.log('onModuleInit fired...');
