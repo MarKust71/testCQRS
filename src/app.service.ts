@@ -5,6 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CommandBus } from '@nestjs/cqrs';
 import { CreateArticleCommand } from './commands/implementations/create-article.command';
+import { ArticleRepository as CustomArticleRepository } from './article.repository';
 
 @Injectable()
 export class AppService {
@@ -12,9 +13,14 @@ export class AppService {
     @InjectRepository(Article)
     private readonly articleRepository: Repository<Article>,
     private readonly commandBus: CommandBus,
+    private readonly customArticleRepository: CustomArticleRepository,
   ) {}
 
   getHello(): string {
+    return 'Hello World!';
+  }
+
+  root(): string {
     return 'Hello World!';
   }
 
@@ -32,6 +38,7 @@ export class AppService {
   }
 
   async getArticle(id: string): Promise<Article> {
-    return this.articleRepository.findOne(id);
+    // return this.articleRepository.findOne(id);
+    return this.customArticleRepository.findById(id);
   }
 }
