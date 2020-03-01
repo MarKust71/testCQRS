@@ -7,6 +7,8 @@ import { CqrsModule, CommandBus, EventBus } from '@nestjs/cqrs';
 import { CreateArticleHandler } from './commands/handlers/create-article.handler';
 import { ModuleRef } from '@nestjs/core';
 import { EventSaga } from './article.saga';
+import { Event } from './event.entity';
+import { ArticleRepository } from './article.repository';
 
 @Module({
   imports: [
@@ -20,10 +22,11 @@ import { EventSaga } from './article.saga';
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Article]),
+    TypeOrmModule.forFeature([Article, Event]),
     CqrsModule,
   ],
   controllers: [AppController],
+  // providers: [AppService, CreateArticleHandler, EventSaga, ArticleRepository],
   providers: [AppService, CreateArticleHandler, EventSaga],
 })
 export class AppModule implements OnModuleInit {
@@ -36,7 +39,7 @@ export class AppModule implements OnModuleInit {
   onModuleInit() {
     console.log('onModuleInit fired...');
     // this.commandBus$.setModuleRef(this.moduleRef);
-    this.commandBus$.register([CreateArticleHandler]);
+    // this.commandBus$.register([CreateArticleHandler]);
     // this.eventBus$.setModuleRef(this.moduleRef);
     // this.eventBus$.combineSagas([this.eventSaga.eventPublished]);
   }
