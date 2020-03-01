@@ -9,13 +9,10 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    return this.appService.root();
   }
 
   @Get('/articles')
-  // getArticle(): ArticleDTO {
-  //   return { name: 'TS > Flow 😶', content: 'Croute' };
-  // }
   getAllArticles(): Promise<Article[]> {
     return this.appService.getAllArticles();
   }

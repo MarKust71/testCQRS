@@ -31,7 +31,6 @@ export class AppModule implements OnModuleInit {
     private readonly moduleRef: ModuleRef,
   ) {}
   onModuleInit() {
-    // this.commandBus$.setModuleRef(this.moduleRef);
-    // this.commandBus$.register([CreateArticleHandler]);
+    console.log('onModuleInit fired...');
   }
 }

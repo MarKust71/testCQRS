@@ -14,16 +14,12 @@ export class AppService {
     private readonly commandBus: CommandBus,
   ) {}
 
-  getHello(): string {
+  root(): string {
     return 'Hello World!';
   }
 
   async storeArticle(articleDTO: ArticleDTO): Promise<Article> {
     const createArticleCommand = new CreateArticleCommand(articleDTO);
-    // this.commandBus.execute(createArticleCommand);
-    // const article = await this.articleRepository.create(articleDTO);
-    // await this.articleRepository.save(article);
-    // return article;
     return this.commandBus.execute(createArticleCommand);
   }
 
