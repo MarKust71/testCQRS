@@ -18,7 +18,6 @@ export class EventSaga {
         storedEvent.aggregateId = event.aggregateId;
         const { constructor } = Object.getPrototypeOf(event);
         storedEvent.className = constructor.name;
-        debugger;
         getRepository(Event).save(storedEvent);
         return null;
       }),
