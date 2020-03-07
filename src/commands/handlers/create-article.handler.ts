@@ -1,7 +1,7 @@
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
 import { CreateArticleCommand } from '../implementations/create-article.command';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Article } from '../../article.entity';
+import { Article, createArticle } from '../../article.entity';
 import { Repository } from 'typeorm';
 
 @CommandHandler(CreateArticleCommand)
@@ -12,7 +12,8 @@ export class CreateArticleHandler
     private readonly articleRepository: Repository<Article>,
   ) {}
   async execute(command: CreateArticleCommand) {
-    const article = this.articleRepository.create(command.articleDto);
+    // const article = this.articleRepository.create(command.articleDto);
+    const article: Article = createArticle(command.articleDto);
     await this.articleRepository.save(article);
     return article;
   }
