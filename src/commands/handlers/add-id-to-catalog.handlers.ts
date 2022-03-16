@@ -6,7 +6,8 @@ import { Repository } from 'typeorm';
 
 @CommandHandler(AddIdToCatalogCommand)
 export class AddIdToCatalogHandler
-  implements ICommandHandler<AddIdToCatalogCommand> {
+  implements ICommandHandler<AddIdToCatalogCommand>
+{
   constructor(
     @InjectRepository(Catalog)
     private readonly catalogRepository: Repository<Catalog>,

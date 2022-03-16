@@ -8,7 +8,8 @@ import { Repository } from 'typeorm';
 
 @CommandHandler(CreateArticleCommand)
 export class CreateArticleHandler
-  implements ICommandHandler<CreateArticleCommand> {
+  implements ICommandHandler<CreateArticleCommand>
+{
   constructor(
     @InjectRepository(Article)
     private readonly articleRepository: Repository<Article>, // private readonly publisher: EventPublisher,
