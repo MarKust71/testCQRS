@@ -15,7 +15,7 @@ export class EventSaga {
   eventPublished = (events$: Observable<any>): Observable<ICommand> => {
     return events$.pipe(
       ofType(ArticleCreated),
-      map(event => {
+      map((event) => {
         const storedEvent = new Event();
         storedEvent.payload = event;
         storedEvent.aggregateId = event.aggregateId;
@@ -31,7 +31,7 @@ export class EventSaga {
   entityCreated = (event$: Observable<any>): Observable<ICommand> => {
     return event$.pipe(
       ofType(ArticleCreated),
-      map(event => {
+      map((event) => {
         return new AddIdToCatalogCommand('article', event.aggregateId);
       }),
     );
